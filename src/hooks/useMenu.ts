@@ -64,5 +64,15 @@ export function useMenu() {
         return updateMenu(items);
     }
 
-    
+    function removeItem(id: string): boolean {
+        return updateMenu(menu.items.filter((item) => item.id !== id));
+    }
+
+    return {
+        items: menu.items,
+        error: menu.error,
+        canEdit: menu.canEdit,
+        saveItem,
+        removeItem,
+    };
 }
