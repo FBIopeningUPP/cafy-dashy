@@ -1,11 +1,13 @@
 import { useState } from "react";
+import AdminPage from "./pages/AdminPage";
+import { useMenu } from "./hooks/useMenu";
 
 type View = "menu" | "order" | "staff";
 
 const navigation: { id: View, label: string }[] = [
     { id: "menu", label: "The menu"},
     { id: "order", label: "Your Order"},
-    { id: "staff", label: "Staff demo"},
+    { id: "staff", label: "Admin demo"},
 ];
 
 const content = {
@@ -28,6 +30,7 @@ const content = {
 
 export default function App() {
     const [view, setView] = useState<View>("menu");
+    const menu = useMenu();
     const activeContent = content[view];
 
     return (
@@ -57,7 +60,9 @@ export default function App() {
                 </nav>
             </header>
             <main id="main-content">
-                <section className="hero" aria-labelledby="hero-title">
+                <section className={view === "staff" ? "hero hero-compact" : "hero"}
+                    aria-labelledby="hero-title"
+                >
                     <div className="hero-copy">
                         <span className="sticker">{activeContent.sticker}</span>
                         <h1 id="hero-title">{activeContent.title}</h1>
@@ -72,6 +77,15 @@ export default function App() {
                         </div>
                     </div>
                 </section>
+                {view === "staff" && (
+                    <AdminPage
+                        items={menu.items}
+                        error={menu.error}
+                        canEdit={menu.canEdit}
+                        onSave={menu.saveItem}
+                        onRemove={menu.removeItem}
+                    />
+                )}
             </main>
             <footer className="site-footer">
                 made for the peoples
