@@ -26,7 +26,7 @@ export default function CartPage({
     const error = cart.error || menuError || summary.error;
 
     function clearCart() {
-        if (window.confirm("clear your saved cart and start again")) {
+        if (window.confirm("Clear your saved cart and start again?")) {
             cart.clearCart();
         }
     }

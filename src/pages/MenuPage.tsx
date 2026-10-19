@@ -8,6 +8,7 @@ type Props = {
     error: string,
     onAdd: (item: MenuItem, sizeLabel?: string) => boolean;
     onViewCart: () => void;
+    onManageMenu: () => void;
 };
 
 const money = new Intl.NumberFormat("en-IN", {
@@ -22,6 +23,7 @@ export default function MenuPage({
     error,
     onAdd,
     onViewCart,
+    onManageMenu,
 }: Props) {
     const [category, setCategory] = useState<string | null>(null);
     const [selectedSizes, setSelectedSizes] = useState<
@@ -45,7 +47,7 @@ export default function MenuPage({
             <div className="section-heading">
                 <div>
                     <h2 id="menu-title">On the menu</h2>
-                    <p>choose a drink or something to eat</p>
+                    <p>Choose a drink or something to eat.</p>
                 </div>
 
                 <button
@@ -53,7 +55,7 @@ export default function MenuPage({
                     type="button"
                     onClick={onViewCart}
                 >
-                    View Order ({cartCount})
+                    View order ({cartCount})
                 </button>
             </div>
 
@@ -70,7 +72,8 @@ export default function MenuPage({
                   {items.length === 0 ? (
         <div className="empty-state">
           <h3>No items on the menu yet.</h3>
-          <p>check back sometime selse.</p>
+          <p>Start the demo by adding your own drinks and food.</p>
+          <button className="button" type="button" onClick={onManageMenu}>Set up demo menu</button>
         </div>
       ) : (
         <>

@@ -65,5 +65,8 @@ export function loadMenu(): MenuItem[] {
 }
 
 export function saveMenu(items: MenuItem[]): void {
+    if (!items.every(isMenuItem) || new Set(items.map((item) => item.id)).size !== items.length) {
+        throw new Error("The menu contains invalid or duplicate items.");
+    }
     localStorage.setItem(MENU_KEY, JSON.stringify(items));
 }

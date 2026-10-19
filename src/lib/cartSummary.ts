@@ -1,4 +1,4 @@
-import type { CartLine, MenuItem, Order, OrderLine } from "../types";
+import type { CartLine, MenuItem, OrderLine } from "../types";
 
 export type CartRow = OrderLine & {
     id: string;
@@ -21,32 +21,32 @@ export function buildCartSummary(
         let error = "";
 
         if (!item) {
-            error = "this item was removed from the menu.";
+            error = "This item was removed from the menu.";
         } else if (!item.available) {
-            error = "this item is sold out";
+            error = "This item is sold out.";
         } else if (
             (sizes.length > 0 && !size) ||
             (sizes.length === 0 && line.sizeLabel !== undefined)
         ) {
-            error = "this size is no longer abailabel remove item and add agin"
+            error = "This size is no longer available. Remove the item and add it again."
         } else if (
             !Number.isInteger(line.quantity) ||
             line.quantity < 1 ||
             line.quantity > 99
         ) {
-            error = "quantity must be between 1 and 99"
+            error = "Quantity must be between 1 and 99."
         } else if (
             !Number.isSafeInteger(unitPrice) ||
             unitPrice < 0 ||
             !Number.isSafeInteger(lineTotal)
         ) {
-            error = "this item has an invaldi price";
+            error = "This item has an invalid price.";
         }
 
         return {
             id: line.id,
             menuItemId: line.menuItemId,
-            name: item?.name ?? "removed item",
+            name: item?.name ?? "Removed item",
             sizeLabel: line.sizeLabel,
             unitPrice,
             quantity: line.quantity,
@@ -59,7 +59,7 @@ export function buildCartSummary(
 
     const error = Number.isSafeInteger(total)
         ? ""
-        : "the orer total is too large";
+        : "The order total is too large.";
     
         const canCheckout =
             rows.length > 0 &&

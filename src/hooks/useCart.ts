@@ -59,7 +59,7 @@ export function useCart() {
         } catch {
             return {
                 lines: [],
-                error: "could not read your cart clear and start again",
+                error: "Could not read your saved cart. Clear the cart to start again.",
                 canEdit: false,
             };
         }
@@ -74,7 +74,7 @@ export function useCart() {
         try {
             localStorage.setItem(CART_KEY, JSON.stringify(lines));
         } catch {
-            return reportError("could not save cart pls try again");
+            return reportError("Could not save your cart. Please try again.");
         }
 
         setCart({lines, error: "", canEdit: true});
@@ -87,7 +87,7 @@ export function useCart() {
         }
 
         if (!item.available) {
-            return reportError("this item is sould out");
+            return reportError("This item is sold out.");
         }
 
         const sizes = item.sizes ?? [];
@@ -96,7 +96,7 @@ export function useCart() {
             (sizes.length > 0 && !sizes.some((size) => size.label === sizeLabel)) ||
             (sizes.length === 0 && sizeLabel !== undefined)
         ) {
-            return reportError("choose an avail size");
+            return reportError("Choose an available size.");
         }
 
         const existing = cart.lines.find(
@@ -106,7 +106,7 @@ export function useCart() {
 
         if (existing) {
             if (existing.quantity >= MAX_QUANTITY) {
-                return reportError("you can add upto 99 of every item");
+                return reportError("You can add up to 99 of each item.");
             }
 
             return saveLines(
@@ -139,7 +139,7 @@ export function useCart() {
             quantity < 1 ||
             quantity > MAX_QUANTITY
         ) {
-            return reportError("quantity must be between 1 and 99");
+            return reportError("Quantity must be between 1 and 99.");
         }
 
         return saveLines(

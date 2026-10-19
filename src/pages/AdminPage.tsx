@@ -33,7 +33,7 @@ export default function AdminPage({
         const saved = onSave(item);
 
         if (saved) {
-            setNotice("menu item saved");
+            setNotice("Menu item saved.");
         }
 
         return saved;
@@ -67,7 +67,7 @@ export default function AdminPage({
             <div className="section-heading">
                 <div>
                     <h2 id="admin-title">Menu management</h2>
-                    <p>Add your drinks and food and set them prices and Availability</p>
+                    <p>Add items, set prices and manage availability.</p>
                 </div>
 
                 <button
@@ -106,6 +106,7 @@ export default function AdminPage({
         <div className="empty-state">
           <h3>Your menu is empty.</h3>
           <p>Add your first item to get the café started.</p>
+          <button className="button" type="button" disabled={!canEdit} onClick={() => setEditor("new")}>Add first item</button>
         </div>
       ) : (
         <ul className="admin-items">
