@@ -17,6 +17,9 @@ made this for Hack Club YSWS. wanted to build a cafe app with a menu that can be
 
 the menu starts empty so u can make your own. refreshing keeps your saved items and orders. **Reset demo** in admin clears them if u want to start over.
 
+## images
+
+![alt text](image.png)
 ## running it locally
 
 built with React, TypeScript and Vite. install Node.js 22.12 or newer, then open a terminal in the project folder:
