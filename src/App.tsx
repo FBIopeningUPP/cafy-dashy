@@ -3,6 +3,7 @@ import AdminPage from "./pages/AdminPage";
 import MenuPage from "./pages/MenuPage";
 import { useMenu } from "./hooks/useMenu";
 import { useCart } from "./hooks/useCart";
+import CartPage from "./pages/CartPage";
 
 type View = "menu" | "order" | "staff";
 
@@ -101,6 +102,15 @@ export default function App() {
             onAdd={cart.addItem}
             onViewCart={() => setView("order")}
           />
+        )}
+
+        {view === "order" && (
+          <CartPage
+            items={menu.items}
+            cart={cart}
+            menuError={menu.error}
+            onBrowse={() => setView("menu")}
+            />
         )}
 
         {view === "staff" && (

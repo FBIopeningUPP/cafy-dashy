@@ -13,7 +13,7 @@ export function buildCartSummary(
     const rows: CartRow[] = lines.map((line) => {
         const item = menu.find((entry) => entry.id === line.menuItemId);
         const sizes = item?.sizes ?? [];
-        const size = sizes.find((entry) => entry.label === line.menuItemId);
+        const size = sizes.find((entry) => entry.label === line.sizeLabel);
         
         const unitPrice = (item?.price ?? 0) + (size?.extraPrice ?? 0);
         const lineTotal = unitPrice * line.quantity;
